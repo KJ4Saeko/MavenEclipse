@@ -17,7 +17,7 @@ node {
 		dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
 			sh "pwd"
 		}
-		//cmd_exec('cmd.exe /C testrunner.bat -sMultiple_TestSuite2 -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
+		cmd_exec('cmd.exe /C testrunner.bat -sMultiple_TestSuite2 -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
 	}
 }
 
