@@ -2,7 +2,6 @@ node {
 
 	//Initialisation
 	stage ('Initialisation') {
-		echo 'Première étape'
-		checkout scm
+		echo 'Première étape' + env.BRANCH_NAME
 	}
 }
