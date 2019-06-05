@@ -1,8 +1,16 @@
 node {
 
+	properties([
+        parameters([
+             text(name: "VERSION", defaultValue: 'master', description: "Git version")
+        ])
+    ])
+
 	//Initialisation
 	stage ('Initialisation') {
 		echo 'Premiere etape' + env.BRANCH_NAME
+		checkout scm
+		bat "git checkout ${params.VERSION}"
 	}
 
 	stage('Premier Test'){
