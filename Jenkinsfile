@@ -15,35 +15,59 @@ node {
 		bat "git checkout ${params.VERSION}"
 	}
 
+	stage('Deploiement prod'){
+		if(buildPassed){
+			try{
+				File ftest1 = new File ("C:\jenkins\workspace\RealPipeline\testQual.txt") 
+				ftest1.createNewFile()
+				FileWriter ftest1f = new FileWriter(ftest1)
+				ftest1f.write(" Build :" + BUILD_NUMBER + " reussi.\n")
+				ftest1f.close()
+			}catch (Exception e){
+				echo "Impossible de deployer, un probleme est survenu"
+			}
+		}	
+	}
+	
 
 	echo '-------------------------------------------------------------------------\n----------------------- Initialisation des tests ------------------------'
 
 
-	boolean testPassed = true
-	/*** Test de fonctionnalité ***/ 
+	/****** Test de fonctionnalité ******/
+
+	boolean testPassedP1 = true 
 	stage('Test de fonctionnalite'){
 		try{
 			dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
 			cmd_exec('cmd.exe /C testrunner.bat -sMultiple_TestSuite2 -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
 			}
 		}catch(Exception e){
-			testPassed = false
+			testPassedP1 = false
 		}	
 	}
-
-	if(testPassed){
-		echo 'Test Ok'
-	}else{
-		echo 'Test dwehb'
+	if(!testPassedP1){
+		echo 'Impossible de déployer sur le serveur de production, un problème est survenu sur le test de fonctionnalite'
 	}
 
-	/*** Test de sécurité ***/ 
+
+	/****** Test de sécurité ******/
+
+	boolean testPassedP2 = true 
 	stage('Test de charge'){
-		dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
+		try{
+			dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
 			cmd_exec('cmd.exe /C securitytestrunner.bat -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
+			}	
+		}catch(Exception e){
+			testPassedP2 = false
 		}	
+	}
+	if(!testPassedP2){
+		echo 'Impossible de déployer sur le serveur de production, un problème est survenu sur le test de securite'
 	}
 }
+
+
 
 
 // ******************** METHODES ******************** 
