@@ -76,7 +76,7 @@ node {
 				testPassedP2 = false
 			}	
 		}else{
-			echo 'Impossible d'executer les tests de securite. (Probleme Deploiement detecte -> Qual)
+			echo 'Impossible d'executer les tests de securite. (Probleme Deploiement detecte -> Qual)'
 		}
 
 	}
