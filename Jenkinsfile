@@ -8,7 +8,7 @@ node {
 
 	/*** Initialisation ***/ 
 	boolean gitPassed = true
-	stage ('Recuperation Dev + Build'){
+	stage ('Recuperation Dev¨'){
 		try{
 			echo '-------------------------------------------------------------------------\n--------------------------- Informations git ----------------------------'
 			checkout scm
@@ -21,7 +21,7 @@ node {
 
 	/*** Deploiement Qual ***/ 
 	boolean deploiementQualPassed = true
-	stage('Deploiement Qual'){
+	stage('Build'){
 		if(gitPassed){
 			try{
 				File ftest1 = new File ("C:/jenkins/workspace/RealPipeline/QualServ/TestQual.txt") 
@@ -29,16 +29,18 @@ node {
 				FileWriter ftest1f = new FileWriter(ftest1)
 				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
 				ftest1f.close()
-
 				/* Trouver une méthode pour push sur un git ici 
 					et pour récuéprer par la même occasion */
-
 			}catch (Exception e){
 				echo "Impossible de deployer en Qual, un probleme est survenu"
 				deploiementQualPassed = false
 			}
 		}	
 	}
+
+	stage('Build') {
+    	git branch: 'Qual', credentialsId: 'df47eff0-740d-4230-a54e-df8b841ac312', url: 'https://github.com/KJ4Saeko/MavenEclipse.git'
+    }
 
 
 
