@@ -9,14 +9,22 @@ node {
     ])
 
 	/*** Initialisation ***/ 
+	boolean gitPassed = true
 	stage ('Initialisation'){
-		echo '-------------------------------------------------------------------------\n--------------------------- Informations git ----------------------------'
-		checkout scm
-		bat "git checkout ${params.VERSION}"
+		try{
+			echo '-------------------------------------------------------------------------\n--------------------------- Informations git ----------------------------'
+			checkout scm
+			bat "git checkout ${params.VERSION}"		
+		}catch(Exception e){
+			gitPassed = false
+			echo 'Impossible de recuperer les informations de GIT.'
+		}
+
 	}
 
-	stage('Deploiement prod'){
-		if(buildPassed){
+	boolean deploiementQualPassed = true
+	stage('Deploiement Qual'){
+		if(gitPassed){
 			try{
 				File ftest1 = new File ("C:/jenkins/workspace/RealPipeline/testQual.txt") 
 				ftest1.createNewFile()
@@ -24,7 +32,8 @@ node {
 				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
 				ftest1f.close()
 			}catch (Exception e){
-				echo "Impossible de deployer, un probleme est survenu"
+				echo "Impossible de deployer en Qual, un probleme est survenu"
+				deploiementQualPassed = false
 			}
 		}	
 	}
@@ -37,12 +46,16 @@ node {
 
 	boolean testPassedP1 = true 
 	stage('Test de fonctionnalite'){
-		try{
-			dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
-			cmd_exec('cmd.exe /C testrunner.bat -sMultiple_TestSuite2 -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
+		if(deploiementQualPassed)
+			try{
+				dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
+				cmd_exec('cmd.exe /C testrunner.bat -sMultiple_TestSuite2 -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
+				}
+			}catch(Exception e){
+				testPassedP1 = false
 			}
-		}catch(Exception e){
-			testPassedP1 = false
+		}else{
+			echo 'Impossible d'executer les tests de fonctionnalite. (Probleme Deploiement detecte -> Qual)'
 		}	
 	}
 	if(!testPassedP1){
@@ -54,13 +67,18 @@ node {
 
 	boolean testPassedP2 = true 
 	stage('Test de charge'){
-		try{
-			dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
-			cmd_exec('cmd.exe /C securitytestrunner.bat -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
+		if(deploiementQualPassed){
+			try{
+				dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
+				cmd_exec('cmd.exe /C securitytestrunner.bat -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
+				}	
+			}catch(Exception e){
+				testPassedP2 = false
 			}	
-		}catch(Exception e){
-			testPassedP2 = false
-		}	
+		}else{
+			echo 'Impossible d'executer les tests de securite. (Probleme Deploiement detecte -> Qual)
+		}
+
 	}
 	if(!testPassedP2){
 		echo 'Impossible de déployer sur le serveur de production, un problème est survenu sur le test de securite'
