@@ -18,17 +18,17 @@ node {
 	stage('Deploiement prod'){
 		if(buildPassed){
 			try{
-				File ftest1 = new File ("C:\jenkins\workspace\RealPipeline\testQual.txt") 
+				File ftest1 = new File ("C:/jenkins/workspace/RealPipeline/testQual.txt") 
 				ftest1.createNewFile()
 				FileWriter ftest1f = new FileWriter(ftest1)
-				ftest1f.write(" Build :" + BUILD_NUMBER + " reussi.\n")
+				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
 				ftest1f.close()
 			}catch (Exception e){
 				echo "Impossible de deployer, un probleme est survenu"
 			}
 		}	
 	}
-	
+
 
 	echo '-------------------------------------------------------------------------\n----------------------- Initialisation des tests ------------------------'
 
