@@ -31,18 +31,9 @@ node {
 				ftest1f.close()
 				echo 'SJVHJKIJTCV'
 				dir("C:/jenkins/workspace/RealPipeline/QualServ")
-				echo 'STEP 1 '
-				cmd_exec('git init')
-				echo 'STEP 2 '
-				cmd_exec('git config user.email "lucashouang@gmail.com"')
-				echo 'STEP 3 '
-				cmd_exec('git config user.name "KJ4Saeko"')
-				echo 'STEP 4 '
 				cmd_exec('git add TestQual.txt')
 				echo 'STEP 5 '
 				cmd_exec('git commit-m "Mise a jour"')
-				echo 'STEP 6 '
-				cmd_exec('git remote add origin https://github.com/KJ4Saeko/NoobQualServ.git')
 				echo 'STEP 7 '
 				cmd_exec("git push origin master --force")
 			}catch (Exception e){
