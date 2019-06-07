@@ -19,15 +19,22 @@ node {
 	echo '-------------------------------------------------------------------------\n----------------------- Initialisation des tests ------------------------'
 
 
+	boolean testPassed = true
 	/*** Test de fonctionnalité ***/ 
 	stage('Test de fonctionnalite'){
-		dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
+		try{
+			dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
 			cmd_exec('cmd.exe /C testrunner.bat -sMultiple_TestSuite2 -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
+		}catch(Exception e){
+			testPassed = false
+		}
 		}	
 	}
 
-	if('Test de fonctionnalite' == 'SUCCESS'){
-		echo ' YOLODEKWFOBEWV'
+	if(testPassed = true){
+		echo 'Test Ok'
+	}else{
+		echo 'Test dwehb'
 	}
 
 	/*** Test de sécurité ***/ 
