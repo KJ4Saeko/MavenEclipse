@@ -26,6 +26,9 @@ node {
 		}	
 	}
 
+	if(Test de fonctionnalite == 'SUCCESS'){
+		echo ' YOLODEKWFOBEWV'
+	}
 
 	/*** Test de sécurité ***/ 
 	stage('Test de charge'){
