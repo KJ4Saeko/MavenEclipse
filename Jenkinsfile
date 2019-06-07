@@ -55,7 +55,7 @@ node {
 				testPassedP1 = false
 			}
 		}else{
-			echo 'Impossible d'executer les tests de fonctionnalite. (Probleme Deploiement detecte -> Qual)'
+			echo "Impossible d'executer les tests de fonctionnalite. (Probleme Deploiement -> Qual)"
 		}	
 	}
 	if(!testPassedP1){
@@ -76,7 +76,7 @@ node {
 				testPassedP2 = false
 			}	
 		}else{
-			echo 'Impossible d'executer les tests de securite. (Probleme Deploiement detecte -> Qual)'
+			echo 'Impossible d'executer les tests de securite. (Probleme Deploiement -> Qual)'
 		}
 
 	}
