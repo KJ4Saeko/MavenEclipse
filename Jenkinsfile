@@ -24,11 +24,19 @@ node {
 	stage('Deploiement Qual'){
 		if(gitPassed){
 			try{
-				File ftest1 = new File ("C:/jenkins/workspace/RealPipeline/testQual.txt") 
+				File ftest1 = new File ("C:/jenkins/workspace/RealPipeline/QualServ/TestQual.txt") 
 				ftest1.createNewFile()
 				FileWriter ftest1f = new FileWriter(ftest1)
 				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
 				ftest1f.close()
+				dir("C:/jenkins/workspace/RealPipeline/QualServ")
+				cmd_exec('git init')
+				cmd_exec('git config user.email "lucashouang@gmail.com"')
+				cmd_exec('git config user.name "KJ4Saeko"')
+				cmd_exec('git add TestQual.txt')
+				cmd_exec('git commit-m "Mise a jour"')
+				cmd_exec('git remote add origin https://github.com/KJ4Saeko/NoobQualServ.git')
+				cmd_exec("git push origin master --force")
 			}catch (Exception e){
 				echo "Impossible de deployer en Qual, un probleme est survenu"
 				deploiementQualPassed = false
