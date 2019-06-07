@@ -26,7 +26,7 @@ node {
 		}	
 	}
 
-	if(Test de fonctionnalite == 'SUCCESS'){
+	if('Test de fonctionnalite' == 'SUCCESS'){
 		echo ' YOLODEKWFOBEWV'
 	}
 
