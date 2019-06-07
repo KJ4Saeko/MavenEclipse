@@ -38,17 +38,6 @@ node {
 		}	
 	}
 
-	stage('Build') {
-    	git branch: 'Qual', credentialsId: 'df47eff0-740d-4230-a54e-df8b841ac312', url: 'https://github.com/KJ4Saeko/MavenEclipse.git'
-    }
-
-
-
-
-
-
-
-
 	echo '-------------------------------------------------------------------------\n----------------------- Initialisation des tests ------------------------'
 
 
