@@ -1,7 +1,5 @@
 node {
 
-	def any_success = false
-
 	properties([
         parameters([
              text(name: "VERSION", defaultValue: 'master', description: "Git version")
@@ -10,7 +8,7 @@ node {
 
 	/*** Initialisation ***/ 
 	boolean gitPassed = true
-	stage ('Initialisation'){
+	stage ('Recuperation Dev + Build'){
 		try{
 			echo '-------------------------------------------------------------------------\n--------------------------- Informations git ----------------------------'
 			checkout scm
@@ -19,9 +17,9 @@ node {
 			gitPassed = false
 			echo 'Impossible de recuperer les informations de GIT.'
 		}
-
 	}
 
+	/*** Deploiement Qual ***/ 
 	boolean deploiementQualPassed = true
 	stage('Deploiement Qual'){
 		if(gitPassed){
@@ -39,11 +37,16 @@ node {
 	}
 
 
+
+
+
+
+
+
 	echo '-------------------------------------------------------------------------\n----------------------- Initialisation des tests ------------------------'
 
 
 	/****** Test de fonctionnalité ******/
-
 	boolean testPassedP1 = true 
 	stage('Test de fonctionnalite'){
 		if(deploiementQualPassed){
@@ -64,7 +67,6 @@ node {
 
 
 	/****** Test de sécurité ******/
-
 	boolean testPassedP2 = true 
 	stage('Test de charge'){
 		if(deploiementQualPassed){
