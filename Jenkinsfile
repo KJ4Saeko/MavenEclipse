@@ -1,5 +1,3 @@
-import groovy.json.JsonSlurper
-
 node {
 
 	def any_success = false
@@ -18,7 +16,7 @@ node {
 	}
 
 
-	echo '-------------------------------------------------------------------------\n--------------------------- Initialisation des tests ----------------------------'
+	echo '-------------------------------------------------------------------------\n----------------------- Initialisation des tests ------------------------'
 
 
 	/*** Test de fonctionnalité ***/ 
@@ -35,28 +33,10 @@ node {
 			cmd_exec('cmd.exe /C securitytestrunner.bat -r C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml')
 		}	
 	}
-
- 	stage('check'){
-        for(jobname in ['SomeJob', 'AnotherJob']){
-            jobStatus = getJobStatus(jobName)
-            echo jobStatus
-            if(jobStatus == "SUCCESS" || jobStatus == "UNSTABLE"){
-                any_success = true
-                break
-            }
-        }
-    }
 }
 
 
 // ******************** METHODES ******************** 
 def cmd_exec(command) {
     return bat(returnStdout: true, script: "${command}").trim()
-}
-
-
-def getJobStatus(String jobName){
-    def rx = httpRequest "https://jenkins.example.com/job/${jobName}/lastBuild/api/json"
-    def rxJson = new JsonSlurper().parseText(rx.getContent())
-    return rxJson['result']
 }
