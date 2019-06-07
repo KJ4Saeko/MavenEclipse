@@ -8,7 +8,7 @@ node {
 
 	//Initialisation
 	stage ('Initialisation'){
-		echo '------------------------------------------------------------\n ------------------------- Informations diverses ------------------------'
+		echo '-------------------------------------------------------------------------\n------------------------- Informations diverses ------------------------'
 		checkout scm
 		bat "git checkout ${params.VERSION}"
 	}
