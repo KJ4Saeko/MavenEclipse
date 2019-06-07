@@ -31,11 +31,10 @@ node {
 				ftest1f.close()
 				echo 'SJVHJKIJTCV'
 				dir("C:/jenkins/workspace/RealPipeline/QualServ")
-				cmd_exec('git add TestQual.txt')
-				echo 'STEP 5 '
-				cmd_exec('git commit-m "Mise a jour"')
-				echo 'STEP 7 '
-				cmd_exec("git push origin master --force")
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'MyID', usernameVariable: 'KJ4Saeko', passwordVariable: 'HouangLucas01121996']]) {
+    				sh("git tag -a some_tag -m 'Jenkins'")
+    				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@NoobQualServ.git --tags')
+				}
 			}catch (Exception e){
 				echo "Impossible de deployer en Qual, un probleme est survenu"
 				deploiementQualPassed = false
