@@ -31,7 +31,7 @@ node {
 		}	
 	}
 
-	if(testPassed = true){
+	if(testPassed){
 		echo 'Test Ok'
 	}else{
 		echo 'Test dwehb'
