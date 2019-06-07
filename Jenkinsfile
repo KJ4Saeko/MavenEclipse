@@ -24,7 +24,7 @@ node {
 	stage('Build'){
 		if(gitPassed){
 			try{
-				File ftest1 = new File ("C:/jenkins/workspace/RealPipeline/QualServ/TestQual.txt") 
+				File ftest1 = new File ("C:/jenkins/workspace/RealPipeline/testQual.txt") 
 				ftest1.createNewFile()
 				FileWriter ftest1f = new FileWriter(ftest1)
 				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
