@@ -13,6 +13,10 @@ node {
 		bat "git checkout ${params.VERSION}"
 	}
 
+
+	echo '-------------------------------------------------------------------------\n--------------------------- Initialisation des tests ----------------------------'
+
+
 	//Test de fonctionnalité
 	stage('Test de fonctionnalite'){
 		dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
