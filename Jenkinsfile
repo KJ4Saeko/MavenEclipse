@@ -29,12 +29,10 @@ node {
 				FileWriter ftest1f = new FileWriter(ftest1)
 				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
 				ftest1f.close()
-				echo 'SJVHJKIJTCV'
-				dir("C:/jenkins/workspace/RealPipeline/QualServ")
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'MyID', usernameVariable: 'KJ4Saeko', passwordVariable: 'HouangLucas01121996']]) {
-    				sh("git tag -a some_tag -m 'Jenkins'")
-    				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@NoobQualServ.git --tags')
-				}
+
+				/* Trouver une méthode pour push sur un git ici 
+					et pour récuéprer par la même occasion */
+
 			}catch (Exception e){
 				echo "Impossible de deployer en Qual, un probleme est survenu"
 				deploiementQualPassed = false
