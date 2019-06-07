@@ -8,7 +8,7 @@ node {
 
 	//Initialisation
 	stage ('Initialisation') {
-		echo env.BRANCH_NAME
+		echo env.BRANCH_NAME + ' YOYOYOYOYOYOYOYOOYYOOYOYOYOY'
 		echo 'Premiere etape ' + env.BRANCH_NAME
 		checkout scm
 		bat "git checkout ${params.VERSION}"
