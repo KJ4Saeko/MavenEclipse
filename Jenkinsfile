@@ -29,6 +29,7 @@ node {
 				FileWriter ftest1f = new FileWriter(ftest1)
 				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
 				ftest1f.close()
+				echo 'SJVHJKIJTCV'
 				dir("C:/jenkins/workspace/RealPipeline/QualServ")
 				echo 'STEP 1 '
 				cmd_exec('git init')
