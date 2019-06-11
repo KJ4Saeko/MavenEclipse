@@ -20,11 +20,10 @@ node {
 	}
 
 	/*** SonarQube ***/
-	stage('SonarQube'){
+	stage('Sonarqube'){
 		environment {
 			scannerHome = tool 'SonarQubeScanner'
 		}
-
 		steps {
 			withSonarQubeEnv('sonarqube'){
 				sh "${scannerHome}/bin/sonar-scanner"
@@ -36,7 +35,7 @@ node {
 		}
 	}
 
-	/*** Deploiement Qual ***/ 
+	/*** Deploiement ***/ 
 	boolean deploiementQualPassed = true
 	stage('Build'){
 		if(gitPassed){
