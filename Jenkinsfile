@@ -19,9 +19,9 @@ node {
 		}
 	}
 
-	stage('SCM'){
-		git 'https://github.com/KJ4Saeko/MavenEclipse.git'
-	}
+	//stage('SCM'){
+	//	git 'https://github.com/KJ4Saeko/MavenEclipse.git'
+	//}
 
 	stage('SonarQube analyse') {
     	// requires SonarQube Scanner 2.8+
