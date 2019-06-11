@@ -26,10 +26,9 @@ node {
 	stage('SonarQube analyse'){
 		def sqScannerMsBuildHome = tool 'Scanner for MSBuild'
 		withSonarQubeEnv('SonarQube'){
-			bat "${sqScannerMsBuildHome}/k:Test/n:TestSonar/v:1.0/d:sonar.host.url=http://localhost:9000/d:sonar.login=admin"
+			bat "${sqScannerMsBuildHome}/k:Test/n:TestSonar/v:1.0/d:sonar.host.url=http://localhost:9000/d:sonar.login=eb02a060748d0b6b6d6c9efc785c8fddb64f13b5"
 			bat 'MSBuild.exe /t:Rebuild' 
-			bat "SonarQube.Scanner.MSBuild.exe end"
-			//bat "${sqScannerMsBuildHome}/d:sonar.login=admin"
+			bat "${sqScannerMsBuildHome}/d:sonar.login=eb02a060748d0b6b6d6c9efc785c8fddb64f13b5"
 		}
 	}
 
