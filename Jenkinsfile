@@ -19,7 +19,16 @@ node {
 		}
 	}
 
+	stage('SCM'){
+		git 'https://github.com/KJ4Saeko/MavenEclipse.git'
+	}
 
+	stage('SonarQube analyse'){
+		def scannerHome = tool 'SonarQube Scanner 2.8'
+		withSonarQubeEnv('Sonar server'){
+			bat "${scannerHome}/bin/sonar-scanner"
+		}
+	}
 	/*** Deploiement ***/ 
 	boolean deploiementQualPassed = true
 	stage('Build'){
