@@ -20,7 +20,7 @@ node {
 	}
 
 	/*** SonarQube ***/
-	stage('Sonarqub'){
+	stage('Sonarqube'){
 		environment {
 			scannerHome = tool 'SonarQubeScanner'
 		}
