@@ -32,7 +32,7 @@ node {
 
 	stage('SonarQube Scanner'){
 		def scannerHome = tool 'SonarScanner 2.4'
-		withSonarQubeEnv('Sonar Scanner'){
+		withSonarQubeEnv('SonarQube Scanner'){
 			bat "${scannerHome}/bin/sonar-scanner"
 		}
 	}
