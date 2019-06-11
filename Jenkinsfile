@@ -8,7 +8,7 @@ node {
 
 	/*** Initialisation ***/ 
 	boolean gitPassed = true
-	stage ('Recuperation Dev¨'){
+	stage ('Recuperation Dev'){
 		try{
 			echo '-------------------------------------------------------------------------\n--------------------------- Informations git ----------------------------'
 			checkout scm
