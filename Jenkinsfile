@@ -29,6 +29,15 @@ node {
 			bat "${scannerHome}/bin/sonar-scanner"
 		}
 	}
+
+	stage('SonarQube Scanner'){
+		def scannerHome = tool 'SonarScanner 2.4'
+		withSonarQubeEnv('Sonar Scanner'){
+			bat "${scannerHome}/bin/sonar-scanner"
+		}
+	}
+
+
 	/*** Deploiement ***/ 
 	boolean deploiementQualPassed = true
 	stage('Build'){
