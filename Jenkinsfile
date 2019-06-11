@@ -8,7 +8,7 @@ node {
 
 	/*** Initialisation ***/ 
 	boolean gitPassed = true
-	stage ('Recuperation Deve'){
+	stage ('Recuperation Dev'){
 		try{
 			echo '-------------------------------------------------------------------------\n--------------------------- Informations git ----------------------------'
 			checkout scm
@@ -23,6 +23,11 @@ node {
 	//	git 'https://github.com/KJ4Saeko/MavenEclipse.git'
 	//}
 
+	/* Insérer ici le code permettant de récuéprer le code à analyser sur git 
+	   pour ainsi l'analyser avec sonarQube - Une autre étape de build derva être faite ici 
+	   pour récupérer les fichier compilé */
+
+	/* Analyse du code avec SonarQube */
 	stage('SonarQube analyse') {
     	// requires SonarQube Scanner 2.8+
     	def scannerHome = tool 'SonarQube Scanner 3.3';
