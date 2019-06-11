@@ -27,8 +27,7 @@ node {
     	// requires SonarQube Scanner 2.8+
     	def scannerHome = tool 'SonarQube Scanner 3.3';
     	withSonarQubeEnv('Sonarqube') {
-      	//cmd_exec("${scannerHome}/sonar-scanner")
-      	sonar.login=admin
+      	cmd_exec("${scannerHome}/sonar-scanner")
     	}
   	}
 
