@@ -48,10 +48,10 @@ node {
 				ftest1f.close()
 				/* Trouver une méthode pour push sur un git ici 
 					et pour récuéprer par la même occasion */
-				git add report-task.txt
-				git merge test
-				git commit -am "Merge to test branch"
-				git push origin master
+				bat "git add report-task.txt"
+				bat "git merge test"
+				bat 'git commit -am "Merge to test branch"'
+				bat "git push origin master"
 			}catch (Exception e){
 				echo "Impossible de deployer en Qual, un probleme est survenu"
 				deploiementQualPassed = false
