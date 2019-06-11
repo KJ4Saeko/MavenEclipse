@@ -19,21 +19,6 @@ node {
 		}
 	}
 
-	/*** SonarQube ***/
-	stage ('Sonarqube environment'){
-		scannerHome = tool 'SonarQubeScanner'
-	}
-
-	stage ('Sonarqube Scan'){
-		withSonarQubeEnv('sonarqube'){
-			sh "${scannerHome}/bin/sonar-scanner"
-		}
-
-		timeout(time: 10, unit: 'MINUTES'){
-			waitForQualityGate abortPipeline: true
-		}
-	}
-	
 
 	/*** Deploiement ***/ 
 	boolean deploiementQualPassed = true
