@@ -24,19 +24,13 @@ node {
 	}
 
 	stage('SonarQube analyse'){
-		def scannerHome = tool 'SonarQube Scanner 3.3'
-		withSonarQubeEnv('Sonar server'){
-			bat "${scannerHome}/bin/sonar-scanner"
+		def scannerHome = tool 'Scanner for MSBuild'
+		withSonarQubeEnv('Sonar Server'){
+			bat "${sqScannerMsBuildHome}/k:Test/n:TestSonar/v:1.0/d:sonar.host.url=http://localhost:9000/d:sonar.login=admin"
+			bat 'MSBuild.exe /t:Rebuild' 
+			bat "${sqScannerMsBuildHome}/d:sonar.login=admin"
 		}
 	}
-
-	stage('SonarQube Scanner'){
-		def scannerHome = tool 'SonarScanner 2.4'
-		withSonarQubeEnv('SonarQube Scanner'){
-			bat "${scannerHome}/bin/sonar-scanner"
-		}
-	}
-
 
 	/*** Deploiement ***/ 
 	boolean deploiementQualPassed = true
