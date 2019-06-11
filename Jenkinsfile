@@ -24,7 +24,7 @@ node {
 	}
 
 	stage('SonarQube analyse'){
-		def scannerHome = tool 'SonarQube Scanner 2.8'
+		def scannerHome = tool 'SonarQube Scanner 3.3'
 		withSonarQubeEnv('Sonar server'){
 			bat "${scannerHome}/bin/sonar-scanner"
 		}
