@@ -49,6 +49,7 @@ node {
 				FileWriter ftest1f = new FileWriter(ftest1)
 				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
 				ftest1f.close()
+				echo "Build SUCCESS"
 				/* Trouver une méthode pour push sur un git ici 
 					et pour récuéprer par la même occasion 
 				bat "git add report-task.txt"
