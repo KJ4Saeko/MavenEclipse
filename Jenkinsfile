@@ -91,7 +91,7 @@ node {
 		if(deploiementQualPassed){
 			try{
 				dir("C:/Program Files (x86)/SmartBear/SoapUI-5.5.0/bin/"){
-					cmd_exec("cmd.exe /C loadtestrunner.bat C:\Users\ADM_LHO\Documents\Calculateur\Calculateur-soapui-project.xml")
+					cmd_exec("cmd.exe /C loadtestrunner.bat C:/Users/ADM_LHO/Documents/Calculateur/Calculateur-soapui-project.xml")
 				}
 			}catch(Exception e){
 				testPassedP2 = false
