@@ -47,11 +47,11 @@ node {
 				ftest1f.write(" Build :" + BUILD_NUMBER + " SUCCESS.\n")
 				ftest1f.close()
 				/* Trouver une méthode pour push sur un git ici 
-					et pour récuéprer par la même occasion */
+					et pour récuéprer par la même occasion 
 				bat "git add report-task.txt"
 				bat "git merge test"
 				bat 'git commit -am "Merge to test branch"'
-				bat "git push origin master"
+				bat "git push origin master" */
 			}catch (Exception e){
 				echo "Impossible de deployer en Qual, un probleme est survenu"
 				deploiementQualPassed = false
